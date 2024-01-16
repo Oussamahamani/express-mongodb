@@ -6,6 +6,7 @@ const router = express.Router()
 
 // const fruits = require('../models/fruits')
 
+// fruits get 
 // "index" route
 router.get('/', fruitController.fruitIndex)
 

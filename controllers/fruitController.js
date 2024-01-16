@@ -1,7 +1,7 @@
 const fruits = require('../models/fruits')
 
 const fruitIndex = (req, res) => {
-    res.render('Index', { fruits: fruits })
+    res.render('folder/Index', { fruits: fruits })
 }
 
 const fruitNew = (req, res) => {

@@ -1,6 +1,8 @@
+require('dotenv').config()
+
 const express = require('express')
 const methodOverride = require('method-override')
-
+const mongoConfig = require('./config')
 const app = express()
 
 // const fruits = require('./models/fruits')
@@ -19,14 +21,17 @@ app.use(methodOverride('_method'))
 app.set('view engine', 'jsx');
 app.engine('jsx', jsxEngine());
 
+// fruits   //get 
 app.use('/fruits', fruitRoutes)
-
+ 
 // "root" route
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+
 app.listen(PORT, () => {
     console.log('Listening on port: ' + PORT)
+    mongoConfig()
 })
 
