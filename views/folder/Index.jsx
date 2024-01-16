@@ -10,7 +10,7 @@ export default function Index({ fruits }) {
       <ul>
         {fruits.map((fruit, i) => (
           <li key={i}>
-            The <a href={`/fruits/${i}`}>{fruit.name}</a> is {fruit.color}{" "}
+            The <a href={`/fruits/${fruit._id}`}>{fruit.name}</a> is {fruit.color}{" "}
             <br></br>
             {fruit.readyToEat ? `It is ready to eat` : `It is not ready to eat`}
             <br />

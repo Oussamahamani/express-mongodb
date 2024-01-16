@@ -1,7 +1,17 @@
 const fruits = require('../models/fruits')
+const Fruit = require('../models/Fruit')
 
-const fruitIndex = (req, res) => {
-    res.render('folder/Index', { fruits: fruits })
+const fruitIndex = async(req, res) => {
+    let data 
+    try{
+
+        data =await Fruit.find()
+       
+        console.log('data from mongo: ',data)
+    }catch(err){
+console.log("data eror",err)
+    }
+    res.render('folder/Index', { fruits: data })
 }
 
 const fruitNew = (req, res) => {
@@ -9,18 +19,32 @@ const fruitNew = (req, res) => {
 }
 
 // "show" route
-const fruitShow = (req, res) => {
-    res.render('Show', { fruit: fruits[req.params.index], index: req.params.index })
+const fruitShow = async(req, res) => {
+    console.log(req.params.id)
+    //name = apple
+    //name= apple , color:green, sort()
+  const data = await Fruit.findById(req.params.id)
+  console.log(data)
+    res.render('Show', { fruit: data  })
     // res.send(fruits[req.params.index])
 }
 
 // "create" route
-const fruitCreate = (req, res) => {
-    console.log(req.body)
+const fruitCreate = async(req, res) => {
+    // console.log(req.body)
     if (req.body.readyToEat === 'on') {
         req.body.readyToEat = true
     } else {
         req.body.readyToEat = false
+    }
+    console.log(req.body)
+
+    try{
+    
+   const result=  await Fruit.create(req.body)
+   console.log('data saved ', result)
+    }catch(err){
+console.log('erro',err)
     }
     fruits.push(req.body)
     res.redirect('/fruits')
@@ -33,6 +57,7 @@ const fruitEdit = (req, res) => {
 
 // "destroy" route
 const fruitDelete = (req, res) => {
+    console.log('delte')
     fruits.splice(req.params.index, 1)
     console.log('deleting')
     res.redirect('/fruits')
