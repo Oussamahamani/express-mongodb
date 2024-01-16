@@ -4,7 +4,7 @@ export default function Edit({ fruit, index }) {
   return (
     <div>
       <h1>Edit Page</h1>
-      <form action={`/fruits/${index}?_method=PUT`} method="POST">
+      <form action={`/fruits/${fruit._id}?_method=PUT`} method="POST">
         Name: <input type="text" name="name" defaultValue={fruit.name} />
         <br /><br />
         Color: <input type="text" name="color" defaultValue={fruit.color} />

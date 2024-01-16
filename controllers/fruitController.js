@@ -51,28 +51,36 @@ console.log('erro',err)
 }
 
 // "edit" route
-const fruitEdit = (req, res) => {
-    res.render('Edit', { fruit: fruits[req.params.index], index: req.params.index })
+const fruitEdit = async(req, res) => {
+    console.log('edit page')
+    const data = await Fruit.findById(req.params.id)
+    console.log(data)
+    res.render('Edit', { fruit: data })
 }
 
 // "destroy" route
-const fruitDelete = (req, res) => {
+const fruitDelete = async(req, res) => {
+    await Fruit.findByIdAndDelete(req.params.id)
     console.log('delte')
-    fruits.splice(req.params.index, 1)
+    // fruits.splice(req.params.index, 1)
     console.log('deleting')
     res.redirect('/fruits')
 }
 
 // "update" route
-const fruitUpdate = (req, res) => {
-    console.log('update')
+const fruitUpdate = async (req, res) => {
+    console.log('update',req.params.id)
+
     if (req.body.readyToEat === 'on') {
         req.body.readyToEat = true
     } else {
         req.body.readyToEat = false
     }
-    fruits[req.params.index] = req.body
-    res.redirect(`/fruits/${req.params.index}`)
+    // console.log('before ',req.body)
+  await Fruit.findByIdAndUpdate(req.params.id,req.body)
+
+    // fruits[req.params.index] = req.body
+    res.redirect(`/fruits/${req.params.id}`)
 }
 
 module.exports = {

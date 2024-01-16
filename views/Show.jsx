@@ -8,9 +8,9 @@ export default function Show({ fruit, index }) {
             <br />
             {fruit.readyToEat ? 'Its is ready to eat' : 'It is not ready to eat... Cant touch this' }
             <br /><br />
-            <a href={`/fruits/${index}/edit`}>Edit</a>
+            <a href={`/fruits/${fruit._id}/edit`}>Edit</a>
             <br /><br />
-            <form action={`/fruits/${index}?_method=DELETE`} method='POST'>
+            <form action={`/fruits/${fruit._id}?_method=DELETE`} method='POST'>
                 <button>Delete</button>
             </form>
         </div>
