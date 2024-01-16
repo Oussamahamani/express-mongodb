@@ -13,6 +13,11 @@ router.get('/', fruitController.fruitIndex)
 // "new" route
 router.get('/new', fruitController.fruitNew)
 
+// seed router
+router.get('/seed',fruitController.fruitSeed)
+
+//delete all
+router.get('/clear',fruitController.fruitClear)
 // "show" route
 router.get('/:id', fruitController.fruitShow)
 

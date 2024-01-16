@@ -83,6 +83,21 @@ const fruitUpdate = async (req, res) => {
     res.redirect(`/fruits/${req.params.id}`)
 }
 
+const fruitSeed= async(req,res)=>{
+        //delete all data from the collection
+        //add seed data to the database
+       console.log('deleting everything ')
+       await Fruit.deleteMany() 
+       await Fruit.create(fruits)
+       res.redirect('/fruits')
+}
+const fruitClear= async(req,res)=>{
+        //delete all data from the collection
+       console.log('deleting everything ')
+       await Fruit.deleteMany() 
+       res.redirect('/fruits')
+}
+
 module.exports = {
     fruitCreate,
     fruitDelete,
@@ -90,5 +105,7 @@ module.exports = {
     fruitIndex,
     fruitNew,
     fruitShow,
-    fruitUpdate
+    fruitUpdate,
+    fruitSeed,
+    fruitClear
 }
